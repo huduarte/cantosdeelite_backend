@@ -9,7 +9,7 @@ from rest_framework import permissions
 
 admin.autodiscover()
 
-admin.site.site_header = settings.PROJECT_NAME if settings.PROJECT_NAME else u'Core Admin'
+admin.site.site_header = settings.PROJECT_NAME if settings.PROJECT_NAME else u'Core Admin' 
 admin.site.site_title =  settings.PROJECT_NAME if settings.PROJECT_NAME else u'Core Admin'
 
 urlpatterns = [
