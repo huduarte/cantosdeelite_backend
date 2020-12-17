@@ -1,0 +1,35 @@
+version: '3.5'
+    
+services:
+    db:
+        restart: unless-stopped
+        image: postgres
+        container_name: ${COMPOSE_PROJECT_NAME}_db
+        environment:
+            - POSTGRES_DB
+            - POSTGRES_USER
+            - POSTGRES_PASSWORD
+    web:
+        restart: unless-stopped
+        build: .
+        image: ${COMPOSE_PROJECT_NAME}
+        container_name: ${COMPOSE_PROJECT_NAME}_web
+        # HINT: this command tries to connect db with migrate command
+        #       to assert the connection is on before start server
+        command: >
+            /bin/bash -c "
+            until python manage.py migrate; do
+                >&2 echo Postgres may be unavailable - sleeping a while;
+                sleep 5;
+            done;
+            python manage.py runserver 0.0.0.0:${PORT}
+            "
+        env_file: .env
+        volumes:
+            - .:/code
+        expose:
+            - "${PORT}"
+        ports:
+            - "${PORT}:${PORT}"
+        depends_on:
+            - db
