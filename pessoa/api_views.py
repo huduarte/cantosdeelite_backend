@@ -1,12 +1,9 @@
 from rest_framework import viewsets 
 
-
-from django.core.mail import send_mail
 from django.conf import settings
 
 from .serializers import PessoaSerializer 
 from .models import Pessoa
-from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.views import APIView
 from rest_framework.generics import RetrieveUpdateAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from rest_framework import status, permissions

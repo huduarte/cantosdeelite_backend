@@ -34,7 +34,6 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='.localhost, .herokuapp.com, 192.168.1.13', cast=Csv())
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -58,20 +57,35 @@ INSTALLED_APPS = [
     'pessoa',
     
 ]
-
 MIDDLEWARE = [
     # IMPORTANT: CORS policies has to go before other entries
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+'http://localhost:3000',
+'http://127.0.0.1'
+]
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+)
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
@@ -209,5 +223,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 SITE_ID = 1
 # end Heroku config
 
-# APPEND_SLASH=False
+APPEND_SLASH=False
 django_heroku.settings(locals())

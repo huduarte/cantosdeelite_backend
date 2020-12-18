@@ -46,7 +46,7 @@ def dev():
     # drop_db()
     migrations() #importante rodar nesta ordem, dados de producao 
     fix("superuser")
-    fix("config")
+    # fix("config")
     # fix("group_adm")
     # fix("group_hr")
     # fix("group_sup")

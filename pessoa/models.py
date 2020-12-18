@@ -14,7 +14,6 @@ from core.utils.mixins.base import BaseMixin
 
 User = get_user_model()
 
-
 class Pessoa(BaseMixin):
     class Meta:
         verbose_name = u'Pessoa' 
