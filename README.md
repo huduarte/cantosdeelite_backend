@@ -1,18 +1,6 @@
 1-  virtualenv -p python3  vm
 2- cd project && pip install -r requirements.txt
 
-*obs: para gerar pip freeze --local
-*obs2: antes do push em nova instância no heroku: heroku config:set DISABLE_COLLECTSTATIC=1
-*obs3: rodar heroku run fab dev
-
-ex: 
-
-**list:
-http://192.168.1.13:8000/api/pessoa/
-
-**update: 
-http://192.168.1.13:8000/api/pessoa/4ed5b488-6d0c-4beb-af68-d15d6f08c67b/
-
 
 ## Utilizando Docker
 
